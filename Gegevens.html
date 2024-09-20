@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gegevens Opslaan</title>
+    <style>
+        body {
+            background-color: #f2bfd7;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .logo-box {
+            width: 300px;
+            padding: 20px;
+            border: 3px solid #CF7280;
+            border-radius: 10px;
+            text-align: center;
+            margin: 0 auto;
+            margin-top: 60px;
+        }
+
+        h2 {
+            color: #CF7280;
+        }
+
+        p {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 18px;
+            color: #2a2a2a;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #cd6388;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #bd275e;
+        }
+
+        .menu {
+            display: none;
+            position: absolute;
+            top: 60px;
+            right: 0;
+            background-color: #CF7280;
+            width: 200px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .menu.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .menu a {
+            display: block;
+            padding: 15px;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .menu a:hover {
+            background-color: #A35D68;
+            border-radius: 12px;
+        }
+
+        .menu-btn {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            cursor: pointer;
+            z-index: 1001;
+            border-radius: 12px;
+            transition: transform 0.5s ease;
+        }
+
+        .menu-btn div {
+            width: 30px;
+            height: 3px;
+            background-color: #CF7280;
+            margin: 6px 0;
+            border-radius: 12px;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+
+        .menu-btn.active div:nth-child(1) {
+            transform: rotate(50deg) translate(5px, 6px);
+        }
+
+        .menu-btn.active div:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-btn.active div:nth-child(3) {
+            transform: rotate(-50deg) translate(5px, -6px);
+        }
+    </style>
+</head>
+<body>
+
+<div class="menu-btn" onclick="toggleMenu()">
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
+
+<div class="menu">
+    <a href="Register.php">Register</a>
+    <a href="Gegevens.html">Gegevens</a>
+</div>
+
+<div class="logo-box">
+    <h2>Opgeslagen Gegevens</h2>
+    <div id="result"></div>
+    <button id="clearData">Gegevens Wissen</button>
+</div>
+
+<script>
+    function toggleMenu() {
+        var menuBtn = document.querySelector('.menu-btn');
+        var menu = document.querySelector('.menu');
+        menuBtn.classList.toggle('active');
+        menu.classList.toggle('active');
+    }
+
+    // Gegevens laden uit localStorage
+    window.onload = function() {
+        var name = localStorage.getItem('name');
+        var age = localStorage.getItem('age');
+        var resultDiv = document.getElementById('result');
+        
+        if (name && age) {
+            resultDiv.innerHTML = '<p><strong>Naam:</strong> ' + name + '</p>' + '<p><strong>Leeftijd:</strong> ' + age + '</p>';
+        } else {
+            resultDiv.innerHTML = '<p>Geen gegevens beschikbaar</p>';
+        }
+    };
+
+    // Verwijderen van gegevens uit localStorage
+    document.getElementById('clearData').addEventListener('click', function() {
+        localStorage.removeItem('name');
+        localStorage.removeItem('age');
+        document.getElementById('result').innerHTML = '<p>Gegevens gewist</p>';
+    });
+</script>
+
+</body>
+</html>

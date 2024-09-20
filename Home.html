@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Girly Homepage</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+              /* Hamburger menu styling */
+        .menu {
+            display: none;
+            position: absolute;
+            top: 60px;
+            right: 0;
+            background-color: #CF7280;
+            width: 200px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .menu.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .menu a {
+            display: block;
+            padding: 15px;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 12px;
+        }
+
+        .menu a:hover {
+            background-color: #A35D68;
+            border-radius: 12px;
+        }
+
+        .menu-btn {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            cursor: pointer;
+            z-index: 1001;
+            border-radius: 12px;
+            transition: transform 0.5s ease;
+        }
+
+        .menu-btn div {
+            width: 30px;
+            height: 3px;
+            background-color: #CF7280;
+            margin: 6px 0;
+            border-radius: 12px;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+
+        .menu-btn.active div:nth-child(1) {
+            transform: rotate(50deg) translate(5px, 6px);
+        }
+
+        .menu-btn.active div:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-btn.active div:nth-child(3) {
+            transform: rotate(-50deg) translate(5px, -6px);
+        }        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">Welcome to website!</h1>
+            <p class="subtitle">opdracht voor webdevelopment 💖</p>
+        </header>
+
+        <div class="menu-btn" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        
+        <div class="menu">
+            <a href="Register.php">Register</a>
+            <a href="Gegevens.html">Gegevens</a>
+        </div>
+        
+        <nav class="navbar">
+            <ul>
+                <li><a href="#">Home</a></li>               
+            </ul>
+        </nav>
+
+        <main class="content">
+            <section class="intro">
+                <h2>Hi, I'm Rachel! </h2>
+                <p>this is my website!</p>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>Made by Rachel | Follow me on <a href="#">Instagram</a> & <a href="#">Twitter</a></p>
+        </footer>
+    </div>
+    <script>
+        function toggleMenu() {
+            var menuBtn = document.querySelector('.menu-btn');
+            var menu = document.querySelector('.menu');
+            menuBtn.classList.toggle('active');
+            menu.classList.toggle('active');
+        }
+
+    </script>
+</body>
+</html>
